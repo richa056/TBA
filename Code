@@ -1,0 +1,173 @@
+import time 
+ 
+def intro(): 
+    print("Welcome to the Adventure Game!") 
+    time.sleep(1) 
+    print("You find yourself in a dark forest.") 
+    time.sleep(1) 
+    print("Your goal is to find the hidden treasure.") 
+    time.sleep(1) 
+    print("Be careful! There are dangers lurking in the forest.") 
+    time.sleep(1) 
+ 
+  
+def choose_path(): 
+    print("\nWhich path will you choose?") 
+    time.sleep(1) 
+    print("1. Take the path to the left.") 
+    time.sleep(1) 
+    print("2. Take the path to the right.") 
+    choice = input("Enter your choice (1 or 2): ") 
+    return choice 
+ 
+def left_path(): 
+    print("\nYou chose the path to the left.") 
+    time.sleep(1) 
+    print("You encounter a wild bear!") 
+    time.sleep(1) 
+    print("What will you do?") 
+    time.sleep(1) 
+    print("1. Fight the bear.") 
+    time.sleep(1) 
+    print("2. Run away.") 
+    choice = input("Enter your choice (1 or 2): ") 
+    if choice == '1': 
+        fight_bear() 
+    elif choice == '2': 
+        print("\nYou quickly turn and run away from the bear.") 
+        time.sleep(1) 
+        print("After a while, you accidentally fall into a pit and starve to death.") 
+        game_over() 
+ 
+def fight_bear(): 
+    print("\nYou choose to fight the bear.") 
+    time.sleep(1) 
+    print("What weapon will you use?") 
+    time.sleep(1) 
+    print("1. Axe") 
+    time.sleep(1) 
+    print("2. Hammer") 
+    weapon_choice = input("Enter your choice (1 or 2): ") 
+    if weapon_choice == '1': 
+        print("\nYou wield the axe and prepare to fight the bear.") 
+        time.sleep(1) 
+        print("You manage to kill the bear and cut open its stomach.") 
+        time.sleep(1) 
+        print("To your surprise, you find the hidden treasure inside!") 
+        time.sleep(1) 
+        print("Congratulations! You have successfully completed your adventure!") 
+        exit() 
+
+    elif weapon_choice == '2': 
+        print("\nYou attempt to use the hammer against the bear.") 
+        time.sleep(1) 
+        print("But the bear is too strong and manages to disarm you.") 
+        time.sleep(1) 
+        print("In the end, the bear overpowers you and you meet your demise.") 
+        game_over() 
+    else: 
+        print("Invalid choice. Please enter 1 or 2.") 
+        fight_bear() 
+ 
+def right_path(): 
+    print("\nYou chose the path to the right.") 
+    time.sleep(1) 
+    print("You come across a river.") 
+    time.sleep(1) 
+    print("What will you do?") 
+    time.sleep(1) 
+    print("1. Swim across the river.") 
+    time.sleep(1) 
+    print("2. Look for a bridge.") 
+    choice = input("Enter your choice (1 or 2): ") 
+    if choice == '1': 
+        print("\nYou attempt to swim across the river but get eaten by a dolphin.") 
+        time.sleep(1) 
+        print("You spend the rest of your life inside the dolphin's stomach. Game Over.") 
+        game_over() 
+    elif choice == '2': 
+        bridge_troll() 
+ 
+def bridge_troll(): 
+    lives = 3 
+    print("\nAs you start crossing the bridge, you encounter a bridge troll. You have 3 chances 
+to impress the troll.") 
+    time.sleep(1) 
+    for _ in range(3): 
+        print("The troll asks you a riddle:") 
+        time.sleep(1) 
+        if _ == 0: 
+            print("I speak without a mouth and hear without ears. I have no body, but I come 
+alive with wind. What am I? (hint: it has 4 letters)") 
+            riddle_answer = input("Enter your answer: ").lower() 
+            if riddle_answer == 'echo': 
+                print("\nThe troll is impressed by your intelligence.") 
+                time.sleep(1) 
+                print("It tells you that the treasure is to the left of the path you started.") 
+
+                left_path() 
+                return 
+            else: 
+                print("\nThe troll is disappointed by your answer.Answer is echo") 
+                time.sleep(1) 
+                print("You lost a life.") 
+                time.sleep(1) 
+                lives -= 1 
+                print("Remaining lives:", lives) 
+        elif _ == 1: 
+            print("What has keys but can't open locks? (hint: it has 8 letters)") 
+            riddle_answer = input("Enter your answer: ").lower() 
+            if riddle_answer == 'keyboard': 
+                print("\nThe troll is impressed by your intelligence.") 
+                time.sleep(1) 
+                print("It tells you that the treasure is to the left of the path you started.") 
+                left_path() 
+                return 
+            else: 
+                print("\nThe troll is disappointed by your answer.Answer is keyboard") 
+                time.sleep(1) 
+                print("You lost a life.") 
+                time.sleep(1) 
+                lives -= 1 
+                print("Remaining lives:", lives) 
+        else: 
+            print("The more you take, the more you leave behind. What am I? (hint: it has 9 
+letters)") 
+            riddle_answer = input("Enter your answer: ").lower() 
+            if riddle_answer == 'footsteps': 
+                print("\nThe troll is impressed by your intelligence.") 
+                time.sleep(1) 
+                print("It tells you that the treasure is to the left of the path you started.") 
+                left_path()  
+                return 
+            else: 
+                print("\nThe troll is disappointed by your answer.Answer is footsteps") 
+                time.sleep(1) 
+                print("Your lives are over.") 
+                time.sleep(1) 
+                print("Suddenly, a vulture swoops down and picks you up.") 
+                time.sleep(1) 
+                print("It takes you to the top of a mountain and makes you its pet.") 
+                time.sleep(1) 
+                print("You spend the rest of your life as the vulture's pet. Game Over.") 
+                return 
+ 
+def game_over(): 
+    print("\nGame Over. Would you like to play again?") 
+ 
+def main(): 
+    intro() 
+    while True: 
+        choice = choose_path() 
+        if choice == '1': 
+            left_path() 
+            break 
+        elif choice == '2': 
+            right_path() 
+            break 
+        else: 
+            print("Invalid choice. Please enter 1 or 2.") 
+            continue 
+ 
+if _name_ == "_main_": 
+    main()
